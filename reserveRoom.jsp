@@ -34,12 +34,10 @@
                     <td>
                         <select name="location">
                             <option>choose option</option>
-                            <option value="KSL Student Accommodation">KSL Student Accommodation</option>
-                            <option value="Kilimanjaro">Kilimanjaro</option>
-                            <option value="The landing">The landing</option>
-                            <option value="ZanderQ Heights">ZanderQ Heights</option>
-                            <option value="laJazz">laJazz</option>
-                            <option value="Miami">Miami</option>
+                            <option value="sedibeng">Sedibeng</option>
+                            <option value="edenPalace">Eden Palace</option>
+                            <option value="mosateHotel">Mosate Hotel</option>
+                            <option value="bakoneng">Bakoneng</option>
                         </select>
                     </td>
                 </tr>
