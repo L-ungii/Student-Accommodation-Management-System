@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import za.ac.tut.ejb.bl.StudentFacadeLocal;
 import za.ac.tut.entities.Student;
 
-public class LoginServlet extends HttpServlet {
+public class UpdateServlet extends HttpServlet {
     @EJB
-        private StudentFacadeLocal sfl;
+    private StudentFacadeLocal sfl;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -20,9 +20,15 @@ public class LoginServlet extends HttpServlet {
         String studNum = request.getParameter("studNum");
         String password = request.getParameter("password");
         
-        Student stud = sfl.findStudentLogin(password, studNum);
+        Student stud = sfl.find(studNum);
+        stud.setPassword(password);
+        stud.getEmail();
+        stud.getName();
+        stud.getSurname();
         
-        RequestDispatcher disp = request.getRequestDispatcher("studentMenu.html");
+        sfl.edit(stud);
+        
+        RequestDispatcher disp = request.getRequestDispatcher("studentLogin.jsp");
         disp.forward(request, response);
     }
 
