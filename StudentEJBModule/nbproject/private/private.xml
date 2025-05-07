@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Room.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Application.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/ejb/bl/ResidenceFacade.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/ejb/bl/ResidenceFacadeLocal.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/ejb/bl/StudentFacade.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Residence.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Administrator.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Student.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/entities/Reservation.java</file>
+            <file>file:/C:/Users/sambo/Documents/NetBeansProjects/StudentEJBModule/src/java/za/ac/tut/ejb/bl/StudentFacadeLocal.java</file>
+        </group>
+    </open-files>
+</project-private>
