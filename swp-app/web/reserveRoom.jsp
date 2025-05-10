@@ -47,7 +47,7 @@
                                 for (int i = 0; i < resList.size(); i++) {
                             %>  
 
-                            <option value=<%=resList.get(i).getResName()%>><%=resList.get(i).getResName()%></option>
+                            <option value="<%=resList.get(i).getResName()%>"><%=resList.get(i).getResName()%></option>
                             <%
                                 }
                             %>
