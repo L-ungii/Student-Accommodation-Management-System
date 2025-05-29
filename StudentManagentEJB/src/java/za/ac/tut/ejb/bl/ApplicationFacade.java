@@ -42,5 +42,13 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
         return appList;
     }
 
+    @Override
+    public List<Application> finAllStud(Student studNum) {
+        Query query = em.createQuery("SELECT c FROM Application c WHERE c.student = :id");
+        query.setParameter("id", studNum);
+        
+        List<Application> app = query.getResultList();
+        return app;
+    }
    
 }
