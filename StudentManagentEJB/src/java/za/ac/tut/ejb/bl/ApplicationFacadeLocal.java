@@ -27,6 +27,8 @@ public interface ApplicationFacadeLocal {
     
     Application findWithStud(Student studNum);
 
+    List<Application> finAllStud(Student studNum);
+
     List<Application> findAll();
     
     List<Application> findWithResName(Residence res);
