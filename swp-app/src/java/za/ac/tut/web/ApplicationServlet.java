@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import za.ac.tut.ejb.bl.ApplicationFacadeLocal;
 import za.ac.tut.ejb.bl.StudentFacadeLocal;
 import za.ac.tut.enetities.Application;
+import za.ac.tut.enetities.Residence;
 import za.ac.tut.enetities.Student;
 
 public class ApplicationServlet extends HttpServlet {
@@ -20,7 +21,7 @@ public class ApplicationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String status = request.getParameter("status");
-        Integer studNum = Integer.parseInt(request.getParameter("studNum"));
+        Integer studNum = Integer.valueOf(request.getParameter("studNum"));
         
         Student stud = sfl.find(studNum);
         Application app = afl.findWithStud(stud);
@@ -47,6 +48,8 @@ public class ApplicationServlet extends HttpServlet {
                 app.getStartDate();
                 app.getRoomType();
                 app.getStudent();
+                Residence res = afl.findWithApp(app.getId());
+                res.setCapacity(res.getCapacity()-1);
             }
             default -> {
                 app.setStatus("declined");
@@ -62,7 +65,7 @@ public class ApplicationServlet extends HttpServlet {
         }
         
         afl.edit(app);
-        RequestDispatcher disp = request.getRequestDispatcher("adminViewApplication_Outcome.jsp");
+        RequestDispatcher disp = request.getRequestDispatcher("ViewApplicationServlet.do");
         disp.forward(request, response);
     }
 

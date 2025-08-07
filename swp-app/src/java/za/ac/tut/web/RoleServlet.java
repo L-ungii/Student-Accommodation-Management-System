@@ -26,7 +26,7 @@ public class RoleServlet extends HttpServlet {
         if(role.endsWith("S")){
             url = "studentLogin.jsp";
         }else {
-            url = "adminLogin.jsp";
+            url = "resLogin.jsp";
         }
             
         

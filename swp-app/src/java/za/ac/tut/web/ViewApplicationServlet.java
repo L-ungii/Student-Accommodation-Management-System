@@ -10,29 +10,43 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import za.ac.tut.ejb.bl.ApplicationFacadeLocal;
+import za.ac.tut.ejb.bl.ReservationFacadeLocal;
 import za.ac.tut.ejb.bl.ResidenceFacadeLocal;
 import za.ac.tut.enetities.Administrator;
 import za.ac.tut.enetities.Application;
+import za.ac.tut.enetities.Reservation;
 import za.ac.tut.enetities.Residence;
 
 public class ViewApplicationServlet extends HttpServlet {
-    @EJB ApplicationFacadeLocal afl;
-    @EJB ResidenceFacadeLocal rfl;
-    
+
+    @EJB
+    ApplicationFacadeLocal afl;
+    @EJB
+    ResidenceFacadeLocal rfl;
+    @EJB ReservationFacadeLocal reserveFL;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
-        Administrator admin = (Administrator)session.getAttribute("admin");
+
+        Administrator admin = (Administrator) session.getAttribute("admin");
         Residence res = rfl.findWithAdmin(admin);
         
+        List<Reservation> reserved = reserveFL.findByResidenceName(res);
+        request.setAttribute("reserved", reserved);
         List<Application> appList = afl.findWithResName(res);
-        
+
         request.setAttribute("appList", appList);
-        
+
         RequestDispatcher disp = request.getRequestDispatcher("viewApplication_Outcome.jsp");
         disp.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
     }
 
 }

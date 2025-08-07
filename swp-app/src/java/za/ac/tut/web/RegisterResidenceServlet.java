@@ -31,21 +31,23 @@ public class RegisterResidenceServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String resName = request.getParameter("resName");
         String location = request.getParameter("location");
-        Integer capacity = Integer.parseInt(request.getParameter("capacity"));
+        Integer capacity = Integer.valueOf(request.getParameter("capacity"));
+        String insta = request.getParameter("insta");
+        String tiktoc = request.getParameter("tiktok");
 
         Part picPart = request.getPart("resPic");
         InputStream inputStream = picPart.getInputStream();
         byte[] image = convertToBytes(inputStream);
 
         Administrator adminID = (Administrator)session.getAttribute("admin");
-        Integer id = adminID.getAdminNum();
+        Long id = adminID.getId();
         Administrator admin = afl.find(id);
 
-        Residence res = new Residence(resName, location, capacity, image, admin);
+        Residence res = new Residence(resName, location, capacity, image, insta, tiktoc, admin);
         
         rfl.create(res);
 
-        RequestDispatcher disp = request.getRequestDispatcher("studentMenu.html");
+        RequestDispatcher disp = request.getRequestDispatcher("ResManApplicationOutcome.jsp");
         disp.forward(request, response);
     }
 

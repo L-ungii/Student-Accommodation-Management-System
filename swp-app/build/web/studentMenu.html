@@ -1,21 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-       <title>Student menu Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Menu</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #f3f4f6;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 1rem;
+                box-sizing: border-box;
+                position: relative;
+              
+            }
+
+            body::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('pic.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                filter: blur(5px);
+                -webkit-filter: blur(5px);
+                z-index: -1;
+            }
+
+            .theme-container {
+                max-width: 600px;
+                width: 90%;
+                padding: 3rem;
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border-radius: 1.5rem;
+                box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.15);
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                z-index: 1;
+            }
+
+            .menu-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #4f46e5;
+                margin-bottom: 1.5rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .menu-list {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .menu-list li a {
+                display: block;
+                padding: 1rem 2rem;
+                background-color: #ffffff;
+                border-radius: 0.75rem;
+                color: #374151;
+                font-size: 1.2rem;
+                font-weight: 500;
+                text-decoration: none;
+                transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .menu-list li a:hover {
+                background-color: #f0f0f0;
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .menu-list li a:active {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .logout-link {
+                display: inline-block;
+                color: #ef4444;
+                font-weight: 600;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                margin-top: 1rem;
+            }
+
+            .logout-link:hover {
+                color: #dc2626;
+            }
+
+            @media (max-width: 768px) {
+                .theme-container {
+                    padding: 2rem;
+                    width: 90%;
+                }
+                .menu-title {
+                    font-size: 2rem;
+                    margin-bottom: 1.5rem;
+                }
+                .menu-list {
+                    gap: 1rem;
+                }
+                .menu-list li a {
+                    font-size: 1.1rem;
+                    padding: 0.8rem 1.5rem;
+                }
+                .logout-link {
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
     </head>
     <body>
-        <h1>Student Menu</h1>
-        <ul>
-            <li><a href="ViewResServlet.do">View Residence</a></li>
-            <li><a href="ReserveRoomServlet.do">Reserve Accommodation</a></li>
-            <li><a href="ViewReserveServlet.do">View Reservation</a></li>
-            <li><a href="CheckSpaceServlet.do">Check Space</a></li>
-            <li><a href="ApplyResidence1.do">Register For Residence</a></li>
-            <li><a href="ViewApplicationStudent.do">View Registration</a></li>
-            <li><a href="CancelRegitrationServlet.do">Cancel Registration</a></li>
-        </ul>
-        <p>
-            <a href="LogoutServlet.do">Logout</a>
-        </p>
+        <div class="theme-container">
+            <h1 class="menu-title">Student Menu</h1>
+            <ul class="menu-list">
+                <li><a href="ManagerListServlet.do">Chat With Us</a></li>
+                <li><a href="ViewResServlet.do">View Residence</a></li>
+                <li><a href="ReserveRoomServlet.do">Reserve Accommodation</a></li>
+                <li><a href="ViewReserveServlet.do">View Reservation</a></li>
+                <li><a href="CheckSpaceServlet.do">Check Space</a></li>
+                <li><a href="ApplyResidence1.do">Register For Residence</a></li>
+                <li><a href="ViewApplicationStudent.do">View Registration</a></li>
+                <li><a href="ViewRoomStudent.do">View Room</a></li>
+            </ul>
+            <div>
+                <a href="index.html" class="logout-link">Logout</a>
+            </div>
+        </div>
     </body>
 </html>

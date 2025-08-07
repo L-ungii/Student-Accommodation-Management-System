@@ -18,8 +18,6 @@
         </p>
         <ul>
             <li>Click <a href="ViewApplicationServlet.do">here</a> Continue viewing the list of registration</li>
-            <li>Click <a href="adminMenu.html">here</a> to return to the main menu</li>
-            <li><a href="LogoutServlet.do">Logout</a></li>
         </ul>
     </body>
 </html>

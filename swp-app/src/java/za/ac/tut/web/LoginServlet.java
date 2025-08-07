@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         
-        Integer studNum = Integer.parseInt(request.getParameter("studNum"));
+        Integer studNum = Integer.valueOf(request.getParameter("studNum"));
         String password = request.getParameter("password");
         
         Student stud = sfl.find(studNum);
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             if(stud.getPassword().equals(password)){
             session.setAttribute("stud", stud);
             
-            RequestDispatcher disp = request.getRequestDispatcher("studentMenu.html");
+            RequestDispatcher disp = request.getRequestDispatcher("studentMenu.jsp");
             disp.forward(request, response);
             }
             else{

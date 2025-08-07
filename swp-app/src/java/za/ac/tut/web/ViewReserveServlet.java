@@ -27,6 +27,7 @@ public class ViewReserveServlet extends HttpServlet {
         List<Reservation> resveredList = rfl.findStudents(stud);
         
         request.setAttribute("resveredList", resveredList);
+        request.setAttribute("message", "Here is the list of reservations you made:");
         
         RequestDispatcher disp = request.getRequestDispatcher("viewReserveOutcome.jsp");
         disp.forward(request, response);

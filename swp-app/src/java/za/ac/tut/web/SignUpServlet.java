@@ -20,13 +20,15 @@ public class SignUpServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         
-        Integer studNum = Integer.parseInt(request.getParameter("studNum"));
+        Integer studNum = Integer.valueOf(request.getParameter("studNum"));
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Integer studyLevel = Integer.valueOf(request.getParameter("studyLevel"));
         
         Student stud = new Student(studNum, name, surname, email, password);
+        stud.setStudyLevel(studyLevel);
         sfl.create(stud);
         session.setAttribute("stud", stud);
         

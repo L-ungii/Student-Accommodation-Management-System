@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -36,9 +37,8 @@ public class ApplyReidence2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Integer studNum = Integer.parseInt(request.getParameter("studNum"));
-            
-            Student stud = sfl.find(studNum);
+            HttpSession session = request.getSession();
+            Student stud = (Student)session.getAttribute("stud");
             
             String roomType = request.getParameter("roomType");
             String resName = request.getParameter("resName");

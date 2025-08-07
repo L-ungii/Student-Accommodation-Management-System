@@ -1,39 +1,207 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
+<html lang="en">
     <head>
-        <title>Welcome Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+        <title>Welcome to Our App</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #fff;
+                font-family: 'Inter', sans-serif;
+                color: #333;
+                position: relative;
+            }
 
+            #welcome-text {
+                font-size: 4em;
+                font-weight: 700;
+                color: #4f46e5;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 1s ease-out, transform 1s ease-out;
+                position: absolute;
+                z-index: 10;
+            }
+
+            #welcome-text.fade-in {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            #welcome-text.fade-out {
+                opacity: 0 !important;
+                transform: translateY(-20px) !important;
+            }
+
+            #full-screen-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('pic.jpg');
+                background-size: cover;
+                background-position: center center;
+                opacity: 0;
+                transition: opacity 1s ease-in;
+                z-index: 1;
+            }
+
+            #full-screen-image.show {
+                opacity: 1;
+            }
+
+            #horizontal-blur-overlay {
+                position: absolute;
+                top: 0;
+                left: 30%;
+                width: 70%;
+                height: 100%;
+                backdrop-filter: blur(0px);
+                -webkit-backdrop-filter: blur(0px);
+                opacity: 0;
+                transition: backdrop-filter 1s ease-in, opacity 1s ease-in;
+                z-index: 2;
+            }
+
+            #horizontal-blur-overlay.blurred {
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                opacity: 1;
+            }
+
+            .description-content-wrapper {
+                position: absolute;
+                top: 0;
+                left: 30%;
+                width: 70%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                box-sizing: border-box;
+                text-align: center;
+                color: #fff;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 1s ease-in, transform 1s ease-in;
+                z-index: 3;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+            }
+
+            .description-content-wrapper.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .description-content-wrapper h2 {
+                font-size: 1.8em;
+                color: #fff;
+                margin-bottom: 15px;
+                text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+            }
+
+            .description-content-wrapper p {
+                font-size: 1.1em;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            }
+
+            .get-started-button {
+                display: inline-block;
+                background-color: #4f46e5;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+
+            .get-started-button:hover {
+                background-color: #6366f1;
+            }
+
+            @media (max-width: 768px) {
+                #welcome-text {
+                    font-size: 3em;
+                }
+                #horizontal-blur-overlay {
+                    left: 0;
+                    top: 50%;
+                    width: 100%;
+                    height: 50%;
+                }
+                .description-content-wrapper {
+                    left: 0;
+                    top: 50%;
+                    width: 100%;
+                    height: 50%;
+                    font-size: 0.9em;
+                    padding: 15px;
+                }
+                .description-content-wrapper h2 {
+                    font-size: 1.5em;
+                }
+                .get-started-button {
+                    padding: 10px 20px;
+                    font-size: 0.9em;
+                }
+            }
+        </style>
+    </head>
     <body>
 
-        <h1>Student Accommodation System</h1>
+        <h1 id="welcome-text">Welcome</h1>
 
-        <p>
-            Welcome to our student accommodation web app.<br/>
-        </p>
-        <form action="RoleServlet.do" method="POST">
-            <table>
-                <tr>
-                    <td>Please select a role:</td>
-                    <td>
-                        <select name="role">
-                            <option value="S">Student</option>
-                            <option value="A">Administrator</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="NEXT"/></td>
-                </tr>
-            </table>
-        </form>
+        <div id="full-screen-image"></div>
+        <div id="horizontal-blur-overlay"></div>
 
+        <div class="description-content-wrapper">
+            <h2>Student Accommodation Management System</h2>
+            <p>A system that provide transparency, security and efficiency for students and administrators alike. The
+                system seeks to alleviate the challenges and uncertainties associated with
+                accommodation arrangements ensuring a smoother experience for students. </p>
+            <a href="start.jsp" class="get-started-button">Get Started</a>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const welcomeText = document.getElementById('welcome-text');
+                const fullScreenImage = document.getElementById('full-screen-image');
+                const blurOverlay = document.getElementById('horizontal-blur-overlay');
+                const descriptionContentWrapper = document.querySelector('.description-content-wrapper');
+
+                setTimeout(() => {
+                    welcomeText.classList.add('fade-in');
+                }, 500);
+
+                setTimeout(() => {
+                    welcomeText.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        welcomeText.style.display = 'none';
+                        fullScreenImage.classList.add('show');
+                    }, 1000);
+                }, 2500);
+
+                setTimeout(() => {
+                    blurOverlay.classList.add('blurred');
+                    descriptionContentWrapper.classList.add('show');
+                }, 2500 + 1000 + 1500);
+            });
+        </script>
     </body>
-</html>
+</html> 

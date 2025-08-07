@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import za.ac.tut.ejb.bl.ApplicationFacadeLocal;
 import za.ac.tut.enetities.Application;
 import za.ac.tut.enetities.Student;
@@ -22,7 +23,7 @@ public class ViewApplicationStudent extends HttpServlet {
         
         Student stud = (Student)session.getAttribute("stud");
         
-        Application app = afl.findWithStud(stud);
+        List<Application> app = afl.finAllStud(stud);
         request.setAttribute("app", app);
         
         RequestDispatcher disp = request.getRequestDispatcher("viewApplicationStud_outcome.jsp");

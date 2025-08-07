@@ -8,13 +8,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import za.ac.tut.ejb.bl.AdministratorFacadeLocal;
+import za.ac.tut.ejb.bl.ApplicationFacadeLocal;
+import za.ac.tut.ejb.bl.ResidenceFacadeLocal;
 import za.ac.tut.enetities.Administrator;
+import za.ac.tut.enetities.Application;
+import za.ac.tut.enetities.Residence;
+import za.ac.tut.enetities.Student;
 
 public class AdminLoginServlet extends HttpServlet {
-
-    @EJB
-    private AdministratorFacadeLocal afl;
+    @EJB AdministratorFacadeLocal afl;
+    @EJB ApplicationFacadeLocal appfl;
+    @EJB ResidenceFacadeLocal rfl;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -22,16 +29,28 @@ public class AdminLoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
 
-        Integer adminNum = Integer.valueOf(request.getParameter("adminNum"));
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Administrator admin = afl.find(adminNum);
+        Administrator admin = afl.findUsername(username);
 
         if (admin != null) {
             if (password.equals(admin.getPassword())) {
-
-                session.setAttribute("admin", admin);
-                RequestDispatcher disp = request.getRequestDispatcher("adminMenu.html");
+                
+                List<Residence> resses = rfl.findAll();
+                Integer resNumber = resses.size();
+                
+                Integer appTotal = appfl.findAll().size();
+                
+                List<Student> approved = appfl.findApproved();
+                Integer approve = approved.size();
+                
+                session.setAttribute("resses", resses);
+                session.setAttribute("resNumber", resNumber);
+                session.setAttribute("appTotal", appTotal);
+                session.setAttribute("approve", approve);
+                
+                RequestDispatcher disp = request.getRequestDispatcher("menu.jsp");
                 disp.forward(request, response);
             } else {
 

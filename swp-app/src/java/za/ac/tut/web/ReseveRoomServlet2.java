@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import za.ac.tut.ejb.bl.ReservationFacadeLocal;
@@ -27,12 +28,12 @@ public class ReseveRoomServlet2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer studNum = Integer.parseInt(request.getParameter("studNum"));
+        HttpSession session = request.getSession();
         String roomType = request.getParameter("roomType");
         String resName = request.getParameter("resName");
-        Integer year = Integer.parseInt(request.getParameter("reservation_year"));
+        Integer year = Integer.valueOf(request.getParameter("reservation_year"));
         
-        Student stud = sfl.find(studNum);
+        Student stud = (Student)session.getAttribute("stud");
         Residence res = resfl.findWithName(resName);
         
         List<Residence> resList = new ArrayList<>();
